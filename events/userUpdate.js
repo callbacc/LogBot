@@ -1,18 +1,18 @@
-const { MessageEmbed, Message } = require("discord.js");
-const message = require("./message");
+const fs = require("fs")
 
 module.exports = async (client, oUser, nUser) => {
-    console.log(oUser);
-    console.log(nUser);
     if(oUser.discriminator !== nUser.discriminator) {
         const discrim = new MessageEmbed()
             .setColor("#03fc0f")
-            .setTitle(`Discriminator updated - ${oUser.User.username}`)
-            .setDescription(`Old Discriminator - *${oUser.User.discriminator}*
-            New Discriminator - *${nUser.User.discriminator}*`);
-        const server = client.guilds.cache.find(guild => guild.id === "679772731201290261");
-        const chan = server.channels.cache.find(channel => channel.id === "679785636496015383");
+            .setTitle(`Discriminator updated - ${oUser.username}`)
+            .setDescription(`Old Discriminator - *${oUser.discriminator}*
+            New Discriminator - *${nUser.discriminator}*`);
+        const server = client.guilds.cache.get("745623135763693648");
+        const chan = server.channels.cache.get("745623135763693652");
         chan.send(discrim);
-
+        const data = `${oUser.username} - ${oUser.discriminator} - ${nUser.discriminator}`;
+        fs.writeFile('../logs/userUpdate.txt', data, (err) => {
+            if(err) throw err;
+        })
     }
 }
