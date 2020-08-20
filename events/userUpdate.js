@@ -19,6 +19,7 @@ module.exports = async (client, oUser, nUser) => {
     if(oUser.username !== nUser.username) {
         const uName = new MessageEmbed()
             .setColor("#03fc0f")
+            //.setThumbnail(nUser.avatar)
             .setTitle(`Username updated - ${oUser.username}`)
             .setDescription(`Old Username - ***${oUser.username}***
             New Username - ***${nUser.username}***`);
