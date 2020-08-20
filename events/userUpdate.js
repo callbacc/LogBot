@@ -1,4 +1,5 @@
-const fs = require("fs")
+const fs = require("fs");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = async (client, oUser, nUser) => {
     if(oUser.discriminator !== nUser.discriminator) {
@@ -10,8 +11,8 @@ module.exports = async (client, oUser, nUser) => {
         const server = client.guilds.cache.get("745623135763693648");
         const chan = server.channels.cache.get("745623135763693652");
         chan.send(discrim);
-        const data = `${oUser.username} - ${oUser.discriminator} - ${nUser.discriminator}`;
-        fs.writeFile('../logs/userUpdate.txt', data, (err) => {
+        const data = `${oUser.username} - ${oUser.discriminator} - ${nUser.discriminator}` + "\n";
+        fs.appendFile('./logs/userUpdate.txt', data, (err) => {
             if(err) throw err;
         })
     }
