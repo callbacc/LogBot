@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/callbacc/LogBot/issues"
   },
-  "homepage": "https://github.com/callbacc/LogBot#readme"
+  "homepage": "https://github.com/callbacc/LogBot#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
 }
