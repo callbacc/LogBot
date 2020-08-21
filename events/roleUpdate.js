@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Message } = require("discord.js");
 const fs = require("fs");
 
 module.exports = async (client, oldRole, newRole) => {
@@ -16,7 +16,8 @@ module.exports = async (client, oldRole, newRole) => {
             fs.appendFile('./logs/roleUpdate.txt', data, (err) => {
                 if(err) throw err;
             })
-        } else {
+        }
+        if (oldRole.permissions.toArray().length < newRole.permissions.toArray().length) {
             const server = client.guilds.cache.get("745623135763693648");
             const chan = server.channels.cache.get("745623135763693652");
             var gainedperms = newRole.permissions.toArray().filter((x) => !oldRole.permissions.toArray().includes(x)).join(", ");
@@ -30,6 +31,15 @@ module.exports = async (client, oldRole, newRole) => {
             fs.appendFile('./logs/roleUpdate.txt', data, (err) => {
                 if(err) throw err;
             })
+        }
+        if(oldRole.name !== newRole.name) {
+            const embed2 = new MessageEmbed()
+                .setColor("#555555")
+                .setTitle(`Role Name Change`)
+                .setDescription(`Old name: \`${oldRole.name}\` - New name: \`${newRole.name}\``);
+            const server = client.guilds.cache.get("745623135763693648");
+            const chan = server.channels.cache.get("745623135763693652");
+            chan.send(embed2);
         }
     }
 }
