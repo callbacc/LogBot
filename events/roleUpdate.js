@@ -20,7 +20,7 @@ module.exports = async (client, oldRole, newRole) => {
             const server = client.guilds.cache.get("745623135763693648");
             const chan = server.channels.cache.get("745623135763693652");
             var gainedperms = newRole.permissions.toArray().filter((x) => !oldRole.permissions.toArray().includes(x)).join(", ");
-            if(!gainedperms) gainedperms = "Administrator";
+            if(!gainedperms) return;
             const embed1 = new MessageEmbed()
                 .setColor("#555555")
                 .setTitle(`Role modified - ${newRole.name}`)
