@@ -6,6 +6,6 @@ module.exports = (client, member) => {
     const embed = new MessageEmbed()
         .setColor("#8B0000")
         .setTitle(`User joined`)
-        .setDescription(`User: ${member.user.username}`);
+        .setDescription(`User: \`${member.user.username}\``);
     chan.send(embed);
 }
