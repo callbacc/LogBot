@@ -8,6 +8,7 @@ module.exports = (client, oldMessage, newMessage) => {
         const embed = new MessageEmbed()
             .setColor("#555555")
             .setTitle(`Message Edited`)
+            .setFooter(oldMessage.author.id)
             .setDescription(`Old message: \`${oldMessage.content}\` - New message: \`${newMessage.content}\``);
         chan.send(embed);
     }
